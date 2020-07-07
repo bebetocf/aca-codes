@@ -1,5 +1,9 @@
 import tsplib95, random, copy
 
+n_tries = 10
+n_random_swap = 20
+n_child_random_swap = 1
+
 # TODO: trocar duas cidades aleatorias
 # Filho nao pode ficar muito diferente do pai
 # No comeco pode trocar muitos filhos e depois trocar pouco
@@ -32,18 +36,28 @@ def swap_close_cities(nodes, points, n_nodes):
 
     return best_value, best_path, best_att
 
-def swap_random_cities(nodes, points, n_nodes, n_child):
+def generate_random_swap_pairs(n_nodes, n_swap):
+    nodes = list(range(n_nodes))
+    random.shuffle(nodes)
+    swap_child = []
+    for i in range(n_swap):
+        # first = random.randint(0, n_nodes - 1)
+        # second = first
+        # while second == first:
+        #     second = random.randint(0, n_nodes - 1)
+        swap_child.append((nodes[2 * i], nodes[(2 * i) + 1]))
+    return swap_child
+
+def swap_random_cities(nodes, points, n_nodes, n_child, n_swap):
     best_value = f_n(nodes, points, n_nodes)
     best_path = copy.deepcopy(nodes)
     best_att = False
 
     for i in range(n_child):
-        first = random.randint(0, n_nodes - 1)
-        second = first
-        while second == first:
-            second = random.randint(0, n_nodes - 1)
-        
-        swap_position(nodes, first, second)
+        swap_child = generate_random_swap_pairs(n_nodes, n_swap)
+        for c in swap_child:
+            swap_position(nodes, c[0], c[1])
+
         value = f_n(nodes, points, n_nodes)
         
         if value < best_value:
@@ -51,7 +65,8 @@ def swap_random_cities(nodes, points, n_nodes, n_child):
             best_path = copy.deepcopy(nodes)
             best_att = True
 
-        swap_position(nodes, first, second)
+        for c in swap_child:
+            swap_position(nodes, c[0], c[1])
 
     return best_value, best_path, best_att
 
@@ -64,8 +79,10 @@ def find_best_solution(points, n_nodes):
     while best_att:
         nodes = copy.deepcopy(best_path)
 
-        best_value, best_path, best_att = swap_close_cities(nodes, points, n_nodes)
-        best_value, best_path, best_att = swap_random_cities(nodes, points, n_nodes, 20)
+        # best_value, best_path, best_att = swap_close_cities(nodes, points, n_nodes)
+        best_value, best_path, best_att = swap_random_cities(nodes, points, n_nodes, n_random_swap, n_child_random_swap)
+
+        # print ("\t[", best_value, "]:", best_path)
 
         n_iterations += 1
 
@@ -76,7 +93,7 @@ def main():
     points = tsplib95.load(points_path)
     n_nodes = len(list(points.get_nodes()))
 
-    for i in range(10):
+    for i in range(n_tries):
         best_path, best_value, best_n = find_best_solution(points, n_nodes)
         print ("[", (i+1), "]:")
         print ("\tDistância do melhor caminho:", best_value)

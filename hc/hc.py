@@ -32,6 +32,29 @@ def swap_close_cities(nodes, points, n_nodes):
 
     return best_value, best_path, best_att
 
+def swap_random_cities(nodes, points, n_nodes, n_child):
+    best_value = f_n(nodes, points, n_nodes)
+    best_path = copy.deepcopy(nodes)
+    best_att = False
+
+    for i in range(n_child):
+        first = random.randint(0, n_nodes - 1)
+        second = first
+        while second == first:
+            second = random.randint(0, n_nodes - 1)
+        
+        swap_position(nodes, first, second)
+        value = f_n(nodes, points, n_nodes)
+        
+        if value < best_value:
+            best_value = value
+            best_path = copy.deepcopy(nodes)
+            best_att = True
+
+        swap_position(nodes, first, second)
+
+    return best_value, best_path, best_att
+
 def find_best_solution(points, n_nodes):
     nodes = list(points.get_nodes())
     random.shuffle(nodes)
@@ -40,8 +63,9 @@ def find_best_solution(points, n_nodes):
 
     while best_att:
         nodes = copy.deepcopy(best_path)
-        
+
         best_value, best_path, best_att = swap_close_cities(nodes, points, n_nodes)
+        best_value, best_path, best_att = swap_random_cities(nodes, points, n_nodes, 20)
 
         n_iterations += 1
 

@@ -1,0 +1,11 @@
+dj38_close_10: 12.20it/s
+dj38_close_100: 13.38it/s
+dj38_random_10_10_1: 54.11it/s
+dj38_random_100_10_1: 49.69it/s
+dj38_random_100_10_2: 84.74it/s
+dj38_random_100_10_5: 138.03it/s
+dj38_random_100_20_1: 20.63it/s
+dj38_random_100_20_2: 36.47it/s
+dj38_random_100_20_5: 70.96it/s
+dj38_random_100_50_1: 6.11it/s
+dj38_random_100_100_5: 11.52it/s

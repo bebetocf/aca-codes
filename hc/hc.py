@@ -1,10 +1,10 @@
 import tsplib95, random, copy, tqdm
 
 n_tries = 100
-n_random_swap = 20
-n_child_random_swap = 1
-swap_strategy = 'close'
-points_path = "zi929.tsp"
+n_random_swap = 100
+n_child_random_swap = 5
+swap_strategy = 'random'
+points_path = "dj38.tsp"
 
 # TODO: trocar duas cidades aleatorias
 # Filho nao pode ficar muito diferente do pai

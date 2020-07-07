@@ -3,7 +3,8 @@ import tsplib95, random, copy
 n_tries = 100
 n_random_swap = 100
 n_child_random_swap = 5
-swap_strategy = 'random'
+swap_strategy = 'close'
+points_path = "zi929.tsp"
 
 # TODO: trocar duas cidades aleatorias
 # Filho nao pode ficar muito diferente do pai
@@ -94,8 +95,7 @@ def write_list_file(fl, lst):
 
 
 def main():
-    points_path = "dj38.tsp"
-    points = tsplib95.load(points_path)
+    points = tsplib95.load('data/' + points_path)
     n_nodes = len(list(points.get_nodes()))
     all_value = 1000000000
 

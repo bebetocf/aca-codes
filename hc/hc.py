@@ -1,7 +1,7 @@
 import tsplib95, random, copy
 
-n_tries = 10
-n_random_swap = 20
+n_tries = 100
+n_random_swap = 50
 n_child_random_swap = 1
 
 # TODO: trocar duas cidades aleatorias
@@ -92,14 +92,22 @@ def main():
     points_path = "./dj38.tsp"
     points = tsplib95.load(points_path)
     n_nodes = len(list(points.get_nodes()))
+    all_value = float('inf')
 
     for i in range(n_tries):
         best_path, best_value, best_n = find_best_solution(points, n_nodes)
-        print ("[", (i+1), "]:")
-        print ("\tDistância do melhor caminho:", best_value)
-        print ("\tIterações executadas:", best_n)
-        print ("\tMelhor caminho:", best_path)
+        if best_value < all_value:
+            all_path, all_value, all_n, all_try = best_path, best_value, best_n, i
 
+        # print ("[", (i+1), "]:")
+        # print ("\tDistância do melhor caminho:", best_value)
+        # print ("\tIterações executadas:", best_n)
+        # print ("\tMelhor caminho:", best_path)
+            
+    print ("Overall best[", all_try , "]:")
+    print ("\tDistância do melhor caminho:", best_value)
+    print ("\tIterações executadas:", best_n)
+    print ("\tMelhor caminho:", best_path)
 
 if __name__ == '__main__':
     main()

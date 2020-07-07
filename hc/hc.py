@@ -8,7 +8,7 @@ def f_n(nodes, points, n_nodes):
     return dist
 
 def find_best_solution(points, n_nodes):
-    nodes = list(range(1, n_nodes + 1))
+    nodes = list(points.get_nodes())
     random.shuffle(nodes)
 
     best_path, best_value, n_iterations, best_att = nodes, f_n(nodes, points, n_nodes), -1, True

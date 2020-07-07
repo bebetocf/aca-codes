@@ -2,7 +2,7 @@ import tsplib95, random, copy, tqdm
 
 n_tries = 100
 n_random_swap = 100
-n_child_random_swap = 5
+n_child_random_swap = 10
 swap_strategy = 'random'
 points_path = "dj38.tsp"
 
@@ -52,7 +52,7 @@ def swap_random_cities(nodes, points, n_nodes, n_child, n_swap):
     best_att = False
 
     for i in range(n_child):
-        swap_child = generate_random_swap_pairs(n_nodes, n_swap)
+        swap_child = generate_random_swap_pairs(n_nodes, random.randint(1, n_swap))
         for c in swap_child:
             swap_position(nodes, c[0], c[1])
 

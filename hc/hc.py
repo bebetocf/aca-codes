@@ -1,9 +1,9 @@
 import tsplib95, random, copy
 
-n_tries = 10
+n_tries = 100
 n_random_swap = 100
-n_child_random_swap = 1
-swap_strategy = 'close'
+n_child_random_swap = 5
+swap_strategy = 'random'
 
 # TODO: trocar duas cidades aleatorias
 # Filho nao pode ficar muito diferente do pai
@@ -99,7 +99,7 @@ def main():
     n_nodes = len(list(points.get_nodes()))
     all_value = 1000000000
 
-    file_name = points_path.split('.')[0] + '_' + str(n_tries) + '_' + swap_strategy
+    file_name = points_path.split('.')[0] + '_' + swap_strategy + '_' + str(n_tries)
     if swap_strategy == 'random':
         file_name += '_' + str(n_random_swap) + '_' + str(n_child_random_swap)
     file_name += '.txt'

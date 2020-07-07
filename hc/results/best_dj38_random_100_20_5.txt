@@ -1,0 +1,4 @@
+Overall best[67]:
+	Distância do melhor caminho: 17025
+	Iterações executadas: 7
+	Melhor caminho: [38, 34, 35, 28, 23, 13, 29, 15, 26, 33, 30, 10, 1, 14, 3, 8, 24, 18, 9, 12, 25, 37, 32, 21, 2, 4, 6, 17, 11, 19, 16, 20, 5, 7, 22, 27, 36, 31]

@@ -1,8 +1,8 @@
-import tsplib95, random, copy
+import tsplib95, random, copy, tqdm
 
 n_tries = 100
-n_random_swap = 100
-n_child_random_swap = 5
+n_random_swap = 20
+n_child_random_swap = 1
 swap_strategy = 'close'
 points_path = "zi929.tsp"
 
@@ -105,7 +105,7 @@ def main():
     file_name += '.txt'
     file_log = open('results/log_' + file_name, 'w')
 
-    for i in range(n_tries):
+    for i in tqdm.tqdm(range(n_tries)):
         best_path, best_value, best_n = find_best_solution(points, n_nodes)
         if best_value < all_value:
             all_path, all_value, all_n, all_try = best_path, best_value, best_n, (i+1)

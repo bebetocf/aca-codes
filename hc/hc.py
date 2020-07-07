@@ -42,10 +42,6 @@ def generate_random_swap_pairs(n_nodes, n_swap):
     random.shuffle(nodes)
     swap_child = []
     for i in range(n_swap):
-        # first = random.randint(0, n_nodes - 1)
-        # second = first
-        # while second == first:
-        #     second = random.randint(0, n_nodes - 1)
         swap_child.append((nodes[2 * i], nodes[(2 * i) + 1]))
     return swap_child
 

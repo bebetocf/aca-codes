@@ -9,3 +9,6 @@ dj38_random_100_20_2: 36.47it/s
 dj38_random_100_20_5: 70.96it/s
 dj38_random_100_50_1: 6.11it/s
 dj38_random_100_100_5: 11.52it/s
+
+dj38_random_100_100_2_random: 3.52it/s
+dj38_random_100_200_3_random_decay: 1.26it/s

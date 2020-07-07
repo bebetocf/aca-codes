@@ -1,8 +1,8 @@
 import tsplib95, random, copy, tqdm
 
 n_tries = 100
-n_random_swap = 100
-n_child_random_swap = 10
+n_random_swap = 200
+n_child_random_swap = 3
 swap_strategy = 'random'
 points_path = "dj38.tsp"
 
@@ -80,7 +80,7 @@ def find_best_solution(points, n_nodes):
         if swap_strategy == 'close': 
             best_value, best_path, best_att = swap_close_cities(nodes, points, n_nodes)
         elif swap_strategy == 'random':
-            best_value, best_path, best_att = swap_random_cities(nodes, points, n_nodes, n_random_swap, n_child_random_swap)
+            best_value, best_path, best_att = swap_random_cities(nodes, points, n_nodes, n_random_swap, n_child_random_swap if n_iterations < 15 else 1)
 
         # print ("\t[", best_value, "]:", best_path)
 
@@ -102,7 +102,7 @@ def main():
     file_name = points_path.split('.')[0] + '_' + swap_strategy + '_' + str(n_tries)
     if swap_strategy == 'random':
         file_name += '_' + str(n_random_swap) + '_' + str(n_child_random_swap)
-    file_name += '.txt'
+    file_name += '_random_decay.txt'
     file_log = open('results/log_' + file_name, 'w')
 
     for i in tqdm.tqdm(range(n_tries)):

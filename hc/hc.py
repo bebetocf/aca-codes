@@ -6,10 +6,6 @@ n_child_random_swap = 3
 swap_strategy = 'random'
 points_path = "dj38.tsp"
 
-# TODO: trocar duas cidades aleatorias
-# Filho nao pode ficar muito diferente do pai
-# No comeco pode trocar muitos filhos e depois trocar pouco
-
 def f_n(nodes, points, n_nodes):
     dist = 0
     for i in range(n_nodes-1):

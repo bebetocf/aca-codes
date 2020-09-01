@@ -33,14 +33,14 @@ def get_next_state(s, a):
     if a == 0:
         if s != 2 and s != 5:
             next_s = s + 1
-    if a == 1:
+    elif a == 1:
         if s != 0 and s != 3:
             next_s = s - 1
-    if a == 2:
-        if s != 0 and s != 1 and s!= 2:
+    elif a == 2:
+        if s > 2:
             next_s = s - 3
-    if a == 3:
-        if s != 3 and s != 4 and s!= 5:
+    elif a == 3:
+        if s < 3:
             next_s = s + 3
     
     return next_s
@@ -72,7 +72,7 @@ def print_value(value):
 if __name__ == "__main__":
 
     state = 0
-    for path in [[0, 0, 0, 3], [3, 3, 2, 0]]:
+    for path in [[0, 0, 0, 3], [2, 2, 3, 0]]:
         for action in path:
             q_value, state = update_value(q_value, state, action)
 
